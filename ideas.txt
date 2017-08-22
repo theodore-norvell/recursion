@@ -1,0 +1,109 @@
+Examples of recursion
+
+Integers:
+   * Factorial
+   * Fibonacci
+   * Combinations
+   * Stirling numbers
+   * Addition, Exponentiation, etc.
+
+Linked lists: 
+   * Length
+   * Count items
+   * Count items that match a criterion
+   * Search for specific thing
+   * Search for the best
+   * Replace
+   * Map a specific function
+   * Map
+   * Summation
+   * Summation with an accumulator
+   * Reversal
+   * Reversal with an accumulator
+   * Fold-left
+   * Flatten
+   * Flatten with an accumulator
+   * Alternating sum
+   * Fold-right
+   * Minimum of a nonempty list
+   * Fold with no zero
+   * Catenation
+   * Merging two lists.
+
+Towers of Hanoi
+   * From start position to final position.
+   * From an arbitrary position to an arbitrary position
+
+Binary Trees:
+   * Count nodes
+   * Find depth
+   * Maps
+   * Sum over all nodes
+   * Preorder traversal
+   * Postorder traversal
+   * Inorder traversal
+   * Search a BST
+
+Expression Trees
+   * Print fully parenthesized.
+   * Print minimally parenthesized.
+   * Evaluate
+   * Evaluate with an environment
+   * Add a let expression
+   * Adding application and lambda expressions
+   * Adding recursion with the Y combinator
+   * Add a let-rec expression
+   * Type check
+   * Generate code
+
+Multiway trees:
+   * Follow a path
+   * Replace nodes at a path
+
+Game trees
+   * Min-max
+   * Alpha-beta pruning
+
+Fractals:
+   * Hilbert curve
+   * Koch snowflake
+   * Sierepinski Triangle
+   * Trees
+   * Random Trees
+   * A Maple Leaf
+   * Random mountain scape
+
+Sets and optimization problems.
+  * Find the size of a set.
+  * Find the sum of a set.
+  * Find all subsets. 
+  * Find all subsets of a given size.
+  * Find the best suitable subset.
+  * Find the best way to make change.
+  * Find all ways of partitioning a set into two subsets
+  * Find the best schedule for two machines.
+  * Find all permutations.
+  * Find all permutations of a given length.
+  * Find the best permutation.
+
+Sorting
+  * Merge Sort
+  * Quick Sort
+
+Sequences
+  * Find all permutations
+  * Find the best suitable permutation
+  * Find all subsequences
+  * Find the best suitable subsequence
+
+Backtracking
+  * Searching a maze for any solution
+  * Searching a maze for all simple solutions
+  * Knights tours
+  * n-queens
+
+Parsing
+  * All parses CNF parsing
+  * RD parsing
+  * Precedence climbing
+  * Pratt Parsing
