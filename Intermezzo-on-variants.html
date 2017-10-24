@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>index</title>
+<title>Intermezzo-on-variants</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11752,21 +11752,143 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Copyright (c) Theodore Norvell 2017. Licence: <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Noncommercial Attribution International 4.0.</a></p>
-<h1 id="Recursion-Wonderland">Recursion Wonderland<a class="anchor-link" href="#Recursion-Wonderland">&#182;</a></h1><h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
-<li><a href="intro.html">Introduction</a></li>
-<li><a href="howto.html">How to use these notes</a></li>
-</ul>
-<h3 id="Counting">Counting<a class="anchor-link" href="#Counting">&#182;</a></h3><ul>
-<li><a href="Factorial.html">Factorial</a></li>
-<li><a href="Fibonnaci.html">Fibonnaci Numbers</a></li>
-<li><a href="Combinations.html">Combinations</a></li>
-<li><a href="Partitions.html">Partitions</a></li>
-<li><a href="AdditionEtc.html">Addition, multiplication, exponentiation and beyond</a></li>
-<li><a href="Intermezzo-on-variants.html">Intermezzo on variants</a></li>
-</ul>
-<h3 id="Sequences">Sequences<a class="anchor-link" href="#Sequences">&#182;</a></h3><ul>
-<li>Length of a sequence</li>
-</ul>
+<p>This is a Jupyter notebook. See <a href="howto.html">How to use these notes</a>.</p>
+<p><a href="index.html">UP TO THE TABLE OF CONTENTS</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>"Alice had not a moment to think about stopping herself before she found herself falling down what seemed to be a very deep well. ...</em></p>
+<p><em>"Down, down, down. Would the fall </em>never<em> come to an end?"</em> --Lewis Carrol, Alice's Adventures in Wonderland.</p>
+<h1 id="Intermezzo-on-variants">Intermezzo on variants<a class="anchor-link" href="#Intermezzo-on-variants">&#182;</a></h1><h2 id="Heading-for-bottom">Heading for bottom<a class="anchor-link" href="#Heading-for-bottom">&#182;</a></h2><p>One of the key ideas of recursive programming is that if a recursive program is going to work, there must be at least one case in which subroutine does not call itself. These cases --there could be more than one-- are called the base cases. For example in my definition for combinations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">combinationsMine</span><span class="p">(</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pre: n and r are integers such that 0 &lt;= r and r &lt;= n</span>
+<span class="sd">    Post: result == the number of subsets of size r of a set of size n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">r</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">combinationsMine</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">combinationsMine</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The base cases are r==n and r==n</p>
+<p>When a base case is called, we call sometime say the recursion has "bottomed out".</p>
+<p>So there has to be a bottom.</p>
+<p>How can we be sure that our recursion will hit bottom?</p>
+<p>The secret is in a function called the variant?  If we can find a variant function with the right properties, then the recursion must eventually hit the bottom.</p>
+<p>As an example, for the <code>combinationsMine</code> subroutine, a suitable variant function is
+$$
+    f(n, r) = n
+$$</p>
+<p>The variant function will have the same parameters as the subroutine.</p>
+<p>The first property a <em>suitable</em> variant function needs to have is that its value must be a natural number (i.e. an integer greater or equal to 0), provided its prameters respect the precondition of the subroutine.  We'll call this property (a).  You should check that our example, $f$ obeys this property.</p>
+<p>The second property the <em>suitable</em> should have is that its value for any child calls is less than the value for the parent call, assuming the parmeters of the parent call satsify the subroutine's precondition.  We'll call this property (b). You should check that our example $f$ obeys this property for the definition of <code>combinationsMine</code>.</p>
+<p>As always we require that every child call respects the precondition of the contract, assuming the parent call also respects the precondition of the contract. We'll call this property (c). It's not a property of the variant function, but of the recursive subroutine. You should check that the definition of <code>combinationsMine</code> satisfies this property.</p>
+<p>With these three properties ((a) The value of the variant function is natural provided the precondition is respected. (b) The value of the variant function is always smaller than the value for the parent call, provided the parent call respects the precondition. (c) All child calls respect the precondition, provided the parent call respects the precondition.) you can see that any call to a recursive subroutine will eventually get to a base case.</p>
+<p>We can prove this using proof by contradiction.  Suppose there is a call to our subroutine that respects the precondition, which makes a child call, which makes a grandchild call, that makes a great-grandchild call, and so on infinitely. From property (c), all these child calls respect the precondition. From property (a), the value of the variant function is a natural number, for all these calls.  Let's call these natural numbers $n_0$ for the original call, $n_1$ for the child call, $n_2$ for the grandchild call, and so on.  From property (b), we have $n_0 > n_1$ and $n_1 > n_2$ and so on infinitely.  But of course there is no infinitely long list of natural numbers such that
+$$
+    n_0 > n_1 > n_2 > n_3 > ...
+$$</p>
+<h3 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h3><p>As an exercise find a suitable variant function for the Factorial example, the Fibonnaci example, and the Partitions example.</p>
+<p>From now on, identifying a suitable variant function will be part of the design process.</p>
+<h2 id="Going-further">Going further<a class="anchor-link" href="#Going-further">&#182;</a></h2><p>Very occasionally, we find it difficult to find a suitable variant function by the definition of suitable above.  An example is my first solution to the <code>superOperator</code> problem, which was.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    pre: y and z are integers with y &gt;= 1 and z &gt;= 1</span>
+<span class="sd">    post: If z is 1, the result is (...(x+x)+ ...)+x, with y xs.</span>
+<span class="sd">        And if z is 2, the result is (...(x*x)* ...)*x, with y xs</span>
+<span class="sd">        And if z is 3, the result (...(x to the x) to the ... ) to the x,  with y xs.</span>
+<span class="sd">        And if z is 4 or more the result is superOpMine( ... superOpMine( superOpMine(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span>
+    <span class="k">elif</span> <span class="n">z</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can't use the function 
+$$
+    f(x, y, z) = z
+$$
+since it doesn't obey property (b) for the calls <code>superOpMine( x, y-1, 1)</code> and <code>superOpMine( x, y-1, z)</code>.  We can't use the function 
+$$
+    f(x, y, z) = y
+$$
+since it doesn't necessarily obey property (b) for the call <code>superOpMine( superOpMine( x, y-1, z), x, z-1)</code>.  We can't use 
+$$
+    f(x, y, z) = x
+$$
+since it doesn't necessarily obey property (b) for either recursive call.</p>
+<p>It turns out there is no simple suitable variant function for this particular recursive subroutine if we use our definition of <em>suitable</em> above.</p>
+<p>To accomodate recursive subroutines like <code>superOpMine</code>, we can change the definition of <em>suitable</em>, just a litte.  First we need a bit of mathematics.</p>
+<h2 id="Well-founded-sets">Well founded sets<a class="anchor-link" href="#Well-founded-sets">&#182;</a></h2><p>A sequence $n_0$, $n_1$, $n_2$, ..., whether infinite or finite is called a <em>descending sequence</em> if
+$$
+    n_0 > n_1 > n_2 > ...
+$$</p>
+<p>A set $S$ together with a relation $>$ is called a <em>well founded set</em> if there are no infinite descending sequences $n_0$, $n_1$, $n_2$, ... of elements of $S$.</p>
+<p>Clearly the natural numbers together with the usual $>$ relation is a well founded set.  The integers are not, since we have
+$$
+    2 > 1 > 0 > -1 > -2 > ..
+$$ Nor are the postitive rational numbers together with the usual $>$ relation, since we have
+$$
+   1 > 1/2 > 1/3 > 1/4 > ...
+$$</p>
+<p>Pairs of natural numbers are a well founded set, if we define $>$ as lexicographic ordering, which means
+$$
+    (a, b) > (c, d) \;\text{if and only if}\; a > c \; \text{or} \; (a=c\;\text{and}\;b > d
+$$
+If a decending sequence starts with $(a,b)$, then after at most $b$ steps the first component has to decrease, and then after a finite number of steps, the first component has to decrease again.  So there can't be an infinite decending sequence. For example starting with $(1,3)$, I can make a sequence
+$$
+   (1,3) > (1,2) > (1,1), > (1,0) > (0, 2) > (0, 1) > (0, 0)
+$$
+And the sequence must end here.  I can make a descending sequence starting with $(1,3)$ any finite length I want, but it has to be finite.</p>
+<h2 id="Modifying-&quot;suitable&quot;">Modifying "suitable"<a class="anchor-link" href="#Modifying-&quot;suitable&quot;">&#182;</a></h2><p>So all we need to do is modify our definition of <em>suitable</em> so that instead of having to compute a natural number in property (a), it can compute a member of any well founded set. And we need to use the order of the well founded set in property (b).</p>
+<h3 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h3><p>For <code>superOpMine</code>, can you find a suitable variant function?</p>
 
 </div>
 </div>

@@ -11756,7 +11756,7 @@ $$
     (((x^x)^x)^x)^x
 $$  (This is sometimes call the tower of powers function.) And can that be repeated so that $x \otimes 5 = (((x \oplus x) \oplus x) \oplus x) \oplus x$?</p>
 <p>What if we call $+$ the first operator, $*$ the second, exponentation the third, and so on.  Can we go on forever?</p>
-<p>Let's define a function $superOp$ so that $superOp(x,y,1) = x+y$,  $superOp(x,y,2) = x*y$,  $superOp(x,y,2) = x^y$,  $superOp(x,y,3) = x \oplus y$, etc.</p>
+<p>Let's define a function $superOp$ so that $superOp(x,y,1) = x+y$,  $superOp(x,y,2) = x*y$,  $superOp(x,y,3) = x^y$,  $superOp(x,y,4) = x \oplus y$, etc.</p>
 <h3 id="A-Contract">A Contract<a class="anchor-link" href="#A-Contract">&#182;</a></h3><p>We can use the following contract</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">superOp</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -11767,7 +11767,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">        And if z is 4 or more the result is superOp( ... superOp( superOp(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </pre></div>
-<p>This is a strange looking contract, because it refers to the superOp function itself. However because the third argument is smaller in self referential case, this is ok.</p>
+<p>This is a strange looking contract, because it refers to the superOp function itself. However, because the third argument is smaller in the self referential case, this is ok.</p>
 <h2 id="Problem-analysis">Problem analysis<a class="anchor-link" href="#Problem-analysis">&#182;</a></h2><p>The problem doesn't really need more analysis, since the contract is already in a recursive form.</p>
 <h2 id="Design">Design<a class="anchor-link" href="#Design">&#182;</a></h2><h3 id="Some-warm-up-problems">Some warm-up problems<a class="anchor-link" href="#Some-warm-up-problems">&#182;</a></h3><p>Before writing the design or code for <code>superOp</code>, I found it useful to do some warm-up problems.</p>
 <p>If you have trouble with any of the three warm-up problems, take a look at my solutions for them before attempting to code <code>superOp</code>.</p>
@@ -11778,7 +11778,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mult</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -11795,7 +11795,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mult</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span><span class="mi">5</span> <span class="p">)</span> <span class="c1"># Should give 20</span>
@@ -11818,7 +11818,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -11836,7 +11836,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">exp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="c1"># Should give 81</span>
@@ -11858,7 +11858,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">tower</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -11876,7 +11876,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tower</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="c1"># Should give 256</span>
@@ -11899,7 +11899,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">superOp</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">)</span> <span class="p">:</span>
@@ -11919,7 +11919,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Should give 20</span>
@@ -11932,7 +11932,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="c1"># Should give 81</span>
@@ -11945,7 +11945,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Should give 65536</span>
@@ -11958,7 +11958,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># Should give 19683</span>
@@ -11971,7 +11971,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Should give 256</span>
@@ -11984,7 +11984,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Should give 4</span>
@@ -12017,7 +12017,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">multMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -12025,6 +12025,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">    pre: y is an integer, y &gt;= 1</span>
 <span class="sd">    post: result == x * y</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span> 
     <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">multMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span>
 </pre></div>
@@ -12036,10 +12037,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">multMine</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">multMine</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Should give 20</span>
 </pre></div>
 
 </div>
@@ -12050,7 +12051,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[118]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12065,7 +12066,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[119]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">expMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -12074,6 +12075,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">    pre: y is an integer, y &gt;= 1</span>
 <span class="sd">    post: result == x to the power y</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span>
     <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">multMine</span><span class="p">(</span> <span class="n">expMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span> <span class="p">)</span>
 </pre></div>
@@ -12085,10 +12087,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">expMine</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">expMine</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="c1"># Should give 81</span>
 </pre></div>
 
 </div>
@@ -12099,7 +12101,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[120]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12114,7 +12116,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">towerMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">)</span> <span class="p">:</span>
@@ -12123,6 +12125,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">    pre: y is an integer, y &gt;= 1</span>
 <span class="sd">    post: result == ( ... ((x to the power x) to the power x) ... to the power x), with y x&#39;s</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span> 
     <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">expMine</span><span class="p">(</span> <span class="n">towerMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span> <span class="p">)</span> 
 </pre></div>
@@ -12134,10 +12137,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">towerMine</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">towerMine</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="c1"># Should give 65536</span>
 </pre></div>
 
 </div>
@@ -12148,7 +12151,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[122]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12172,7 +12175,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">)</span> <span class="p">:</span>
@@ -12183,6 +12186,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">        And if z is 3, the result (...(x to the x) to the ... ) to the x,  with y xs.</span>
 <span class="sd">        And if z is 4 or more the result is superOpMine( ... superOpMine( superOpMine(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span>
     <span class="k">elif</span> <span class="n">z</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span>
     <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">superOpMine</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12195,7 +12199,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Should give 20</span>
@@ -12209,7 +12213,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[124]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12224,7 +12228,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="c1"># Should give 81</span>
@@ -12238,7 +12242,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[125]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12253,7 +12257,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Should give 65536</span>
@@ -12267,7 +12271,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[126]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12282,7 +12286,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># Should give 19683</span>
@@ -12296,7 +12300,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12311,7 +12315,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Should give 256</span>
@@ -12325,7 +12329,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[128]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12340,7 +12344,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">superOpMine</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Should give 4</span>
@@ -12354,7 +12358,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12379,7 +12383,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">iterativeSuperOp</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="p">)</span> <span class="p">:</span>
@@ -12390,6 +12394,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">        And if z is 3, the result (...(x to the x) to the ... ) to the x,  with y xs.</span>
 <span class="sd">        And if z is 4 or more the result is iterativeSuperOp( ... iterativeSuperOp( iterativeSuperOp(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">y</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">z</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
          <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">-</span><span class="mi">1</span>
     <span class="k">if</span> <span class="n">y</span><span class="o">==</span><span class="mi">1</span> <span class="p">:</span> <span class="k">return</span> <span class="n">x</span>
@@ -12403,10 +12408,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Should give 20</span>
 </pre></div>
 
 </div>
@@ -12417,7 +12422,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[131]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[62]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12432,10 +12437,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># Should give 81</span>
 </pre></div>
 
 </div>
@@ -12446,7 +12451,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[132]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12461,10 +12466,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Should give 65536</span>
 </pre></div>
 
 </div>
@@ -12475,7 +12480,36 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[133]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>65536</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="c1"># Should give 19683</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12490,10 +12524,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="c1"># Should give 256</span>
 </pre></div>
 
 </div>
@@ -12504,7 +12538,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[134]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12519,10 +12553,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[135]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOp</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Should give 4</span>
 </pre></div>
 
 </div>
@@ -12533,7 +12567,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[135]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12558,7 +12592,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[136]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">iterativeSuperOpPrime</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="p">:</span>
@@ -12569,6 +12603,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">        And if z is 3, the result (...(x to the x) to the ... ) to the x,  with y xs.</span>
 <span class="sd">        And if z is 4 or more the result is iterativeSuperOpPrime( ... iterativeSuperOpPrime( iterativeSuperOpPrime(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">z</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">x</span>
     <span class="k">while</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -12584,10 +12619,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[137]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Should give 20</span>
 </pre></div>
 
 </div>
@@ -12598,7 +12633,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[137]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[71]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12613,10 +12648,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Should give 81</span>
 </pre></div>
 
 </div>
@@ -12627,7 +12662,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[138]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[72]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12642,10 +12677,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Should give 65536</span>
 </pre></div>
 
 </div>
@@ -12656,7 +12691,36 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[139]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>65536</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># Should give 19683</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12671,10 +12735,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[140]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># Should give 256</span>
 </pre></div>
 
 </div>
@@ -12685,7 +12749,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[140]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[75]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12700,10 +12764,10 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Should give 4</span>
 </pre></div>
 
 </div>
@@ -12714,7 +12778,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[141]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[76]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12739,7 +12803,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterativeSuperOpPrime</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -12753,7 +12817,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[98]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
