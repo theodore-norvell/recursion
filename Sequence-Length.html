@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>howto</title>
+<title>Sequence-Length</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11753,6 +11753,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Copyright (c) Theodore Norvell 2017. Licence: <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Noncommercial Attribution International 4.0.</a></p>
 <p>This is a Jupyter notebook. See <a href="howto.html">How to use these notes</a>.</p>
+<p><a href="index.html">UP TO THE TABLE OF CONTENTS</a></p>
 
 </div>
 </div>
@@ -11762,60 +11763,392 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;==<a href="intro.html">Introduction</a>== || <a href="index.html">Table of contents</a> || ==<a href="Factorial.html">Factorial</a>==&gt;</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to-use-these-notes">How to use these notes<a class="anchor-link" href="#How-to-use-these-notes">&#182;</a></h1><p>These notes are written using Jupyter Notebook. This is a web app that lets me easily create the notes.</p>
-<p>As mentioned in the Introduction, you don't need to use Python.  You can use any programming language.  Well, any programming language that supports recursion, which is to say almost any language you are likely to encounter except COBOL and older versions of FORTRAN.</p>
-<h2 id="If-you-are-using-Python">If you are using Python<a class="anchor-link" href="#If-you-are-using-Python">&#182;</a></h2><p>There are at least two ways to use these notes with Python.</p>
-<h3 id="Using-Python-with-an-IDE-or-text-editor">Using Python with an IDE or text editor<a class="anchor-link" href="#Using-Python-with-an-IDE-or-text-editor">&#182;</a></h3><p>If you are reading these notes on the web in HTML, you can follow along by using Python 3 in IDLE (or your favourite IDE) or just using a good text editor and the Pyhton 3 interpreter.  You should be able to copy code from the web pages and paste it into your text editor.  I'd suggest making one Python file per web page.</p>
-<ul>
-<li>There is a nice video on using IDLE <a href="https://www.youtube.com/watch?v=kXbpB5_ywDw">on YouTube</a>.</li>
-<li>And <a href="https://www.youtube.com/watch?v=pofWfJc3Zog">here is a you tube</a> video on using the Python interpreter with a text editor.</li>
-</ul>
-<h3 id="Using-Python-with-Jupyter-Notebook">Using Python with Jupyter Notebook<a class="anchor-link" href="#Using-Python-with-Jupyter-Notebook">&#182;</a></h3><p>However the best way to use these notes may be via the Jupyter Notebook app.  After intalling Python 3 and Jupyter Notebook, you can download these notes from github and then view and edit them in Jupyter Notebook.  This way you can easily add missing code to these notes and then execute the code very simply.</p>
-<ul>
-<li>Install Jupyter.  <a href="http://jupyter.org/install.html">Intructions are here</a></li>
-<li>Download or clone these notes from <a href="https://github.com/theodore-norvell/recursion">our github repository</a>.</li>
-<li>cd to the root directory and run 'jupyter notebook'</li>
-<li>Your browswer should show the files in a tab called "Home".</li>
-<li>Click on 'index.ipynb'</li>
-</ul>
-<h2 id="Using-another-language">Using another language<a class="anchor-link" href="#Using-another-language">&#182;</a></h2><p>This will be a little more work.</p>
-<p>Translate the contracts and tests into the other language.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;==<a href="intro.html">Introduction</a>== || <a href="index.html">Table of contents</a> || ==<a href="Factorial.html">Factorial</a>==&gt;</p>
+<h1 id="Sequence-length">Sequence length<a class="anchor-link" href="#Sequence-length">&#182;</a></h1><h2 id="The-problem">The problem<a class="anchor-link" href="#The-problem">&#182;</a></h2><p>Suppose we have a sequence. How can we find its length.  Well if the sequence is represented by a Python <code>list</code> or a Python <code>tuple</code> object, we can just use the <code>len</code> function.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span>
+<span class="nb">len</span><span class="p">(</span> <span class="n">aList</span> <span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;w&#39;</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="p">;</span>
+<span class="nb">len</span><span class="p">(</span> <span class="n">aTuple</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But let's suppose Python didn't have a length function. How can we write one using recursion.</p>
+<p>This isn't something I'd normally do, at least not in Python, but the point of these exercises is to get comfortable with recursion, not to learn the best way to solve problems.</p>
+<h3 id="A-few-words-about-sequences,-lists,-and-tuples">A few words about sequences, lists, and tuples<a class="anchor-link" href="#A-few-words-about-sequences,-lists,-and-tuples">&#182;</a></h3><p>Python has several built-in types for representing sequences and more can be added by class defnitions.  The built-in types include <code>tuple</code>, <code>list</code>, <code>string</code>, <code>bytes</code>, and <code>bytearray</code>.  I'm going to use tuples mostly. To make the code less dependent on the details of Python, we'll make and use the following definitions</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span> <span class="n">s</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pre: s is a sequence represented by a tuple</span>
+<span class="sd">    Post: result is true if s is empty and false otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">==</span> <span class="p">()</span>
+<span class="k">def</span> <span class="nf">cons</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">s</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pre: s is is a sequence represented by a tuple</span>
+<span class="sd">    Post: result is a sequence represented by a tuple with x as its first item and s as the rest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,)</span> <span class="o">+</span> <span class="n">s</span>
+<span class="k">def</span> <span class="nf">first</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pre: s is is a nonempty sequence represented by a tuple</span>
+<span class="sd">    Post: result the first item of the sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">!=</span> <span class="p">()</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">;</span>
+<span class="k">def</span> <span class="nf">rest</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pre: s is is a nonempty sequence represented by a tuple</span>
+<span class="sd">    Post: result the first item of the sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">!=</span> <span class="p">()</span>
+    <span class="n">fst</span><span class="p">,</span> <span class="o">*</span><span class="n">rst</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">rst</span><span class="p">);</span>
+<span class="k">def</span> <span class="nf">decons</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pre: s is is a nonempty sequence represented by a tuple</span>
+<span class="sd">    Post: result is a pair consisting of the first items of s and a tuple of the rest of the items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">!=</span> <span class="p">()</span>
+    <span class="n">fst</span><span class="p">,</span> <span class="o">*</span><span class="n">rst</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="n">fst</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-contract">A contract<a class="anchor-link" href="#A-contract">&#182;</a></h3><p>We write a contract for a <code>length</code> function which will find the length of a sequence represented by a tuple.
+The contract is</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">length</span><span class="p">(</span> <span class="n">s</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pre: s is a sequence</span>
+<span class="sd">        Post: result == length of the sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+<h2 id="Problem-analysis">Problem analysis<a class="anchor-link" href="#Problem-analysis">&#182;</a></h2><h3 id="Alice's-observation">Alice's observation<a class="anchor-link" href="#Alice's-observation">&#182;</a></h3><p>Alice notices (rather obviously) that if we split a sequence into its first item and a sequence of all the rest of the items then the length of the list is one more than the length of rest of the sequence.  For example if we hae a sequence $[a,b,c,d]$ then and split it into the first item $a$ and the rest of the sequence $[b,c,d]$, the length of the original list will be one more than the length of $[b,c,d]$.</p>
+<h3 id="We-need-a-base-case">We need a base case<a class="anchor-link" href="#We-need-a-base-case">&#182;</a></h3><p>The empty sequence can't be split, so it must be a base case.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Your-solution">Your solution<a class="anchor-link" href="#Your-solution">&#182;</a></h1><h2 id="Design">Design<a class="anchor-link" href="#Design">&#182;</a></h2><p>Based on the problem analysis, we can write a design in pseudocode.  In this case the pseudocode will look a lot like Python, so you can take this step if you want or skip it if you don't.</p>
+<p><em>[Put your pseudocode here]</em></p>
+<h2 id="Analyze-design">Analyze design<a class="anchor-link" href="#Analyze-design">&#182;</a></h2><p>Before coding, you should check that your design will work.  Here is a checklist</p>
+<ul>
+<li>Is every case allowed by the precondition covered?</li>
+<li>Does the code do the right thing (i.e. return a result allowed by the postcondition) in each case?</li>
+<li>Is there a variant function?</li>
+</ul>
+<h2 id="Code">Code<a class="anchor-link" href="#Code">&#182;</a></h2><p>Complete the following function</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span> <span class="n">s</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pre: s is a sequence</span>
+<span class="sd">        Post: result == length of the sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Analyze-code">Analyze code<a class="anchor-link" href="#Analyze-code">&#182;</a></h2><p>If you wrote pseudocode, check that your design is consistant with the pseudocode.  If you didn't write pseudocode, use the checklist above to check your code.</p>
+<h2 id="Test">Test<a class="anchor-link" href="#Test">&#182;</a></h2><p>Below are some tests. After you define the function, you can run these tests and compare the answers with expected answers above.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">length</span><span class="p">(</span> <span class="p">()</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">length</span><span class="p">(</span> <span class="p">(</span><span class="mi">42</span><span class="p">,)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">length</span><span class="p">(</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">,</span> <span class="mi">33550336</span><span class="p">,</span> <span class="mi">8589869056</span><span class="p">,</span> <span class="mi">137438691328</span><span class="p">,</span> <span class="mi">2305843008139952128</span><span class="p">,</span>
+         <span class="mi">2658455991569831744654692615953842176</span><span class="p">,</span> <span class="mi">191561942608236107294793378084303638130997321548169216</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="My-Solution">My Solution<a class="anchor-link" href="#My-Solution">&#182;</a></h1><h2 id="Design">Design<a class="anchor-link" href="#Design">&#182;</a></h2><p>Here is my pseudocode, it's included here mostly as an illustration of the notation that I use for sequences when writing pseudocode</p>
+<blockquote><p><strong>function</strong> $length( s : seq<T> )$</p>
+<blockquote><p><strong>pre</strong> $s$ is a sequence<BR>
+<strong>post</strong> result is the length of $s$.</p>
+<p><strong>if</strong> $s = [\,]$ <strong>then</strong> 0<BR>
+<strong>else</strong> $1 + length( s[1,..] )$ <BR>
+<strong>end if</strong></p>
+</blockquote>
+</blockquote>
+<p>or using the functions defined above, we could write</p>
+<blockquote><p><strong>function</strong> $length( s : seq<T> )$</p>
+<blockquote><p><strong>pre</strong> $s$ is a sequence<BR>
+<strong>post</strong> result is the length of $s$.</p>
+<p><strong>if</strong> $isEmpty(s)$ <strong>then</strong> 0<BR>
+<strong>else</strong> $1 + length( rest(s) )$ <BR>
+<strong>end if</strong></p>
+</blockquote>
+</blockquote>
+<h2 id="Analysis">Analysis<a class="anchor-link" href="#Analysis">&#182;</a></h2><ul>
+<li>A sequence is either empty or not, so all cases are covered</li>
+<li>The code looks right for both cases.</li>
+<li>The variant function is the length of the sequence $s$!</li>
+</ul>
+<p>Remark. This is an unusual case where the function we are computing and the variant function itself are the same thing.  Nevertheless it works.</p>
+<h2 id="Code">Code<a class="anchor-link" href="#Code">&#182;</a></h2><p>And here is the Python 3 code</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> <span class="k">def</span> <span class="nf">lengthMine</span><span class="p">(</span> <span class="n">s</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pre: s is a sequence</span>
+<span class="sd">        Post: result == length of the sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">isEmpty</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span> <span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">lengthMine</span><span class="p">(</span> <span class="n">rest</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test">Test<a class="anchor-link" href="#Test">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lengthMine</span><span class="p">(</span> <span class="p">()</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lengthMine</span><span class="p">(</span> <span class="p">(</span><span class="mi">42</span><span class="p">,)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lengthMine</span><span class="p">(</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">,</span> <span class="mi">33550336</span><span class="p">,</span> <span class="mi">8589869056</span><span class="p">,</span> <span class="mi">137438691328</span><span class="p">,</span> <span class="mi">2305843008139952128</span><span class="p">,</span>
+         <span class="mi">2658455991569831744654692615953842176</span><span class="p">,</span> <span class="mi">191561942608236107294793378084303638130997321548169216</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Disclaimer">Disclaimer<a class="anchor-link" href="#Disclaimer">&#182;</a></h1><p>As mentioned above, this is not a sensible way to find the length of a sequence in Python, given that there is a built in function to do the same thing.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
