@@ -2,4 +2,4 @@ exp: generate
 	cp *.html  ../Web-Site/recursionWonderland/
 
 generate: 
-	jupyter nbconvert *.ipynb
+	jupyter nbconvert --config config.py *.ipynb
