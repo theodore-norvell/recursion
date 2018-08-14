@@ -11767,7 +11767,7 @@ $$  (This is sometimes call the tower of powers function.) And can that be repea
 <span class="sd">        And if z is 4 or more the result is superOp( ... superOp( superOp(x, x, z-1), x, z-1) ..., x, z-1), with y xs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </pre></div>
-<p>This is a strange looking contract, because it refers to the superOp function itself. However, because the third argument is smaller in the self referential case, this is ok.</p>
+<p>This is a strange looking contract, because it refers to the superOp function itself. However, because the third argument is smaller in the self referential case, this is ok: The contract actually does unambigously define a function.</p>
 <h2 id="Problem-analysis">Problem analysis<a class="anchor-link" href="#Problem-analysis">&#182;</a></h2><p>The problem doesn't really need more analysis, since the contract is already in a recursive form.</p>
 <h2 id="Design">Design<a class="anchor-link" href="#Design">&#182;</a></h2><h3 id="Some-warm-up-problems">Some warm-up problems<a class="anchor-link" href="#Some-warm-up-problems">&#182;</a></h3><p>Before writing the design or code for <code>superOp</code>, I found it useful to do some warm-up problems.</p>
 <p>If you have trouble with any of the three warm-up problems, take a look at my solutions for them before attempting to code <code>superOp</code>.</p>

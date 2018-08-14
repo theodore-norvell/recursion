@@ -11763,15 +11763,15 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Fibonnaci">Fibonnaci<a class="anchor-link" href="#Fibonnaci">&#182;</a></h1><h2 id="The-problem">The problem<a class="anchor-link" href="#The-problem">&#182;</a></h2><p>Still in the theatre waiting for the movie to start, Alice wonders how many ways there are of putting people in the 4 seats.  For 0 seats, there is only one way { [] } (the empty sequence). If there is one seat, we have two ways {B, G}. If there are two seats, there are 4 ways {BB, BG, GB, GG}.  If there are 3 seats there are 8 ways {BBB, BBG, BGB, BGG, GBB, GBG, GGB, GGG} and so on.  Clearly if there are n seats there are $2^n$ ways.</p>
+<h1 id="Fibonnaci">Fibonnaci<a class="anchor-link" href="#Fibonnaci">&#182;</a></h1><h2 id="The-problem">The problem<a class="anchor-link" href="#The-problem">&#182;</a></h2><p>Still in the theatre waiting for the movie to start, Alice wonders how many ways there are of putting boys and girls in the 4 seats.  (Here we ignore every aspect of a person except whether they are a boy or a girl.)  For 0 seats, there is only one way { [] } (the empty sequence). If there is one seat, we have two ways {B, G}. If there are two seats, there are 4 ways {BB, BG, GB, GG}.  If there are 3 seats there are 8 ways {BBB, BBG, BGB, BGG, GBB, GBG, GGB, GGG} and so on.  Clearly if there are n seats there are $2^n$ ways.</p>
 <p>But, the boys never want to sit next to other boys, so she wonders how many ways you can fill 4 seats with boys and girls so that there are never two boys next to each other.</p>
 <h3 id="A-generalization">A generalization<a class="anchor-link" href="#A-generalization">&#182;</a></h3><p>In general, the problem is how many ways are there of seating boys and girls in $n$ seats such that two boys never sit next to each other.</p>
 <p>Alice makes a table</p>
 <table>
 <thead><tr>
-<th>n</th>
+<th>$n$</th>
 <th>arrangements</th>
-<th>count(n)</th>
+<th>$count(n)$</th>
 </tr>
 </thead>
 <tbody>
@@ -11802,7 +11802,7 @@ div#notebook {
 </tr>
 </tbody>
 </table>
-<p>She notices that each number --after the first two-- is the sum of the two previous numbers. (Why is that?)  The function from n to count(n) can be completely defined by three equations</p>
+<p>She notices that each number --after the first two-- is the sum of the two previous numbers. (Why is that?)  The function from $n$ to $count(n)$ can be completely defined by three equations</p>
 <ol>
 <li>$count(0) = 1$</li>
 <li>$count(1) = 2$</li>
@@ -12361,9 +12361,9 @@ $fib(n) = fib(n-1) + fib(n-2)$, for all $n$ such that  $n > 1$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Going-further">Going further<a class="anchor-link" href="#Going-further">&#182;</a></h1><p>My solution above is not very efficient.  In fact the number of call is makes is typicall bigger than its result. For example computing <code>fibMine(5)</code> takes 8 calls and computing <code>fibMine(20)</code> takes over 21,000 function calls!</p>
-<p>Despite its popularity for illustrating recursion, the straight forward way of using recursion to compute the Fibonnaci function is actually terribly inefficient.</p>
-<p>Let's use two accumulators.  One carries the value of fib(i) and the other the value of fib(i-1).</p>
+<h1 id="Going-further">Going further<a class="anchor-link" href="#Going-further">&#182;</a></h1><p>My solution above is not very efficient.  In fact the number of call is makes is typically bigger than its result. For example computing <code>fibMine(5)</code> takes 8 calls and computing <code>fibMine(20)</code> takes over 21,000 function calls!</p>
+<p>Despite its popularity for illustrating recursion, the straight-forward way of using recursion to compute the Fibonnaci function is actually terribly inefficient.  However, we can use it as the basis for a more efficient solution.</p>
+<p>Let's use two accumulators.  One carries the value of fib(i) and the other the value of fib(i-1). In order to handle fib(0), it's helpful to define that fib(-1)=1.</p>
 
 </div>
 </div>
