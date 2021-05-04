@@ -18,8 +18,8 @@ b = tk.Button( root, text="Go", command = mkMover( 10, r, c, 2, 2, 100 ) )
 b.pack()
 
 
-class Hanoi
-    def __init__( self, count, tk, root, w, h )
+class Hanoi :
+    def __init__( self, count, tk, root, w, h ):
         self.count = count
         self.w = w 
         self.h = h
