@@ -1,5 +1,6 @@
 import tkinter as tk
 import time
+import hanoi
 
 root = tk.Tk()
 
@@ -18,7 +19,7 @@ b = tk.Button( root, text="Go", command = mkMover( 10, r, c, 2, 2, 100 ) )
 b.pack()
 
 
-class Hanoi :
+class GraphicalHanoi :
     def __init__( self, count, tk, root, w, h ):
         self.count = count
         self.w = w 
@@ -26,12 +27,7 @@ class Hanoi :
         self.tk = tk
         self.root = root
         self.canv = tk.Canvas( root, width=w, height=h )
-        self.spindles = [ [], [], [] ] 
-        for i in range(0, count) :
-            self.spindles[0].append( [i] )
-        self.disks = {}
-        for i in  range(0, count) :
-            self.disks = self.disks.union( new Disk(i, 0, count-i-1, canv ) )
+        self.h = Hanoi()
 
 
 
