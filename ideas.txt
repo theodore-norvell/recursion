@@ -6,7 +6,6 @@ Integers:
    * Combinations
    * Stirling numbers
    * Addition, Exponentiation, etc.
-   * Ackermann's function.
 
 Linked lists: 
    * Length
@@ -38,16 +37,12 @@ Towers of Hanoi
 Binary Trees:
    * Count nodes
    * Find depth
-   * Map a function
+   * Maps
    * Sum over all nodes
    * Preorder traversal
    * Postorder traversal
    * Inorder traversal
    * Search a BST
-   * Creating an optimal BST from a sorted list with weights.
-   * Catamorphisms and paramorphisms
-   * Anamorphism
-   * Huffman encoding
 
 Expression Trees
    * Print fully parenthesized.
@@ -68,7 +63,6 @@ Multiway trees:
 Game trees
    * Min-max
    * Alpha-beta pruning
-   * Other kinds of pruning such as selective iterative deepening.
 
 Fractals:
    * Hilbert curve
@@ -77,7 +71,7 @@ Fractals:
    * Trees
    * Random Trees
    * A Maple Leaf
-   * Random mountainscape
+   * Random mountain scape
 
 Sets and optimization problems.
   * Find the size of a set.
